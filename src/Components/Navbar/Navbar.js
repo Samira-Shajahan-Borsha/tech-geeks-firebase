@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import Logo from "../../Assets/Image/logo.png";
 import "./Navbar.css";
 import { useLocation } from "react-router-dom";
@@ -42,9 +42,11 @@ const Navbar = () => {
         pathname.includes("blog") ? { display: "none" } : { display: "flex" }
       }
     >
-      <div className='logo-container'>
-        <img src={Logo} alt='' />
-      </div>
+      <Link to='/'>
+        <div className='logo-container'>
+          <img src={Logo} alt='' />
+        </div>
+      </Link>
       <div className='link-container'>
         <NavLink
           className={({ isActive }) => (isActive ? "active-link" : "link")}
@@ -58,12 +60,14 @@ const Navbar = () => {
         >
           Videos
         </NavLink>
-        {user.uid ? <button style={{ cursor: 'pointer' }} className="logout-button" onClick={handleLogOut}>Logout</button> : <NavLink
-          className={({ isActive }) => (isActive ? "active-link" : "link")}
-          to='/login'
-        >
-          Login
-        </NavLink>}
+        {
+          user.uid ? <button style={{ cursor: 'pointer' }} className="logout-button" onClick={handleLogOut}>Logout</button> : <NavLink
+            className={({ isActive }) => (isActive ? "active-link" : "link")}
+            to='/login'
+          >
+            Login
+          </NavLink>
+        }
       </div>
     </nav>
   );
