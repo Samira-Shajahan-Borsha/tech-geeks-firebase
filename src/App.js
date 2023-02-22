@@ -12,6 +12,7 @@ import NotFound from "./Components/NotFound/NotFound";
 export const BlogContext = createContext();
 
 function App() {
+  
   const [blogs, setBlogs] = useState([]);
 
   return (

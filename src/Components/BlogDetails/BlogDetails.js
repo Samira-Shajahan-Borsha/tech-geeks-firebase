@@ -9,7 +9,7 @@ const BlogDetails = () => {
   const navigate = useNavigate();
   // const [blog, setBlog] = useState({});
   const [blogs] = useContext(BlogContext);
-  const blog = blogs.find((blog) => blog._id == id);
+  const blog = blogs.find((blog) => blog._id === id);
 
   // useEffect(() => {
   //   fetch(`https://retro-tech-talks.herokuapp.com/getBlog/${id}`)
