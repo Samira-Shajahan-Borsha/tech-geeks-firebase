@@ -1,4 +1,3 @@
-import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Videos from "./Components/Videos/Videos";
@@ -8,6 +7,8 @@ import BlogDetails from "./Components/BlogDetails/BlogDetails";
 import { createContext, useState } from "react";
 import Signup from "./Components/Signup/Signup";
 import NotFound from "./Components/NotFound/NotFound";
+import { Toaster } from 'react-hot-toast';
+import "./App.css";
 
 export const BlogContext = createContext();
 
@@ -17,6 +18,7 @@ function App() {
 
   return (
     <BlogContext.Provider value={[blogs, setBlogs]}>
+      <Toaster/>
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />

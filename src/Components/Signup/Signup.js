@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import GoogleLogo from "../../Assets/Image/google.svg";
 import { auth } from "../../Firebase/firebase.init";
@@ -12,7 +13,7 @@ const Signup = () => {
   const [password, setPassword] = useState({ inputvalue: '', error: '' });
   const [confirmPassword, setConfirmPassword] = useState({ inputvalue: '', error: '' });
 
-  console.log(password, confirmPassword)
+  // console.log(password, confirmPassword)
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -32,6 +33,7 @@ const Signup = () => {
   const handleSignUp = (event) => {
     event.preventDefault();
 
+
     if (email.inputvalue === '') {
       setEmail({ inputvalue: '', error: 'Email is required' })
     }
@@ -47,10 +49,17 @@ const Signup = () => {
           const user = userCredential.user;
           console.log(user);
           navigate('/');
+          toast.success('Account created successfully', { id: 101, position: "top-center" });
         })
         .catch(error => {
           const errorMessage = error.message;
-          console.log(errorMessage);
+          // console.log(errorMessage);
+          if (errorMessage.includes('auth/email-already-in-use')) {
+            toast.error('User is already created', { id: 102, position: "top-center" });
+          }
+          else {
+            toast.error(errorMessage, { id: 103, position: "top-center" })
+          }
         })
 
     }
