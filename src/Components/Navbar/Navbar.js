@@ -14,7 +14,7 @@ const Navbar = () => {
 
   const [user, setUser] = useState({});
 
-  console.log(user)
+  // console.log(user)
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {

@@ -25,18 +25,20 @@ const Login = () => {
   }
 
   const handleLogin = event => {
-    
+
     event.preventDefault();
 
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    console.log(email, password)
+    // console.log(email, password);
+
     signInWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         const user = userCredential.user;
         console.log(user);
+        navigate('/');
       })
       .catch(error => {
         const errorMessage = error.message;
